@@ -1,9 +1,10 @@
 data "aws_ecs_task_definition" "wordpress" {
-  task_definition = "${aws_ecs_task_definition.wordpress.family}"
+  task_definition = aws_ecs_task_definition.wordpress.family
+  depends_on      = [aws_ecs_task_definition.wordpress]
 }
 
 resource "aws_ecs_task_definition" "wordpress" {
-    family                = "hello_world"
+    family                = "wordpress"
     container_definitions = <<DEFINITION
 [
   {
